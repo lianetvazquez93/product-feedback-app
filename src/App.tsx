@@ -1,5 +1,5 @@
 import React from 'react';
-import { HashRouter as Router, Route, Link, Switch } from 'react-router-dom';
+import { BrowserRouter, Route, Link, Switch } from 'react-router-dom';
 import './App.css';
 import Suggestions from './pages/Suggestions';
 import EditFeedback from './pages/EditFeedback';
@@ -9,7 +9,7 @@ import Roadmap from './pages/Roadmap';
 
 const App: React.FC = () => {
   return (
-    <Router>
+    <BrowserRouter>
       <div>
         <nav>
           <Link to="/" className="mr-5">
@@ -36,7 +36,7 @@ const App: React.FC = () => {
           <Route path="/detail" component={FeedbackDetail} />
         </Switch>
       </div>
-    </Router>
+    </BrowserRouter>
   );
 };
 
