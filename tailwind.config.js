@@ -29,6 +29,9 @@ module.exports = {
         lineHeight: '35px'
       }],
     },
+    borderRadius: {
+      'large': '10px'
+    },
     extend: {
       colors: {
         purple: {

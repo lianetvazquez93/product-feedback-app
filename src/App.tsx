@@ -10,7 +10,7 @@ import Roadmap from './pages/Roadmap';
 const App: React.FC = () => {
   return (
     <BrowserRouter>
-      <div>
+      <div style={{ backgroundColor: '#F7F8FD' }}>
         <nav>
           <Link to="/" className="mr-5">
             Suggestions

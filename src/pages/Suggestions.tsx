@@ -1,6 +1,6 @@
 import React, { useState, useEffect } from 'react';
 import axios from 'axios';
-import ProductRequests from '../components/ProductRequests';
+import ProductRequestsList from '../components/ProductRequestsList';
 
 const Suggestions: React.FC = () => {
   const [productRequests, setProductRequests] = useState<any>([]);
@@ -15,7 +15,7 @@ const Suggestions: React.FC = () => {
 
   return (
     <div>
-      <ProductRequests productRequests={productRequests} />
+      <ProductRequestsList productRequests={productRequests} />
     </div>
   );
 };
