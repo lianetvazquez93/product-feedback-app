@@ -11,23 +11,6 @@ const App: React.FC = () => {
   return (
     <BrowserRouter>
       <div style={{ backgroundColor: '#F7F8FD' }}>
-        <nav>
-          <Link to="/" className="mr-5">
-            Suggestions
-          </Link>
-          <Link to="/new" className="mr-5">
-            New
-          </Link>
-          <Link to="/edit" className="mr-5">
-            Edit
-          </Link>
-          <Link to="/detail" className="mr-5">
-            Details
-          </Link>
-          <Link to="/roadmap" className="mr-5">
-            Roadmap
-          </Link>
-        </nav>
         <Switch>
           <Route exact path="/" component={Suggestions} />
           <Route path="/new" component={NewFeedback} />
