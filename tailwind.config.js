@@ -21,6 +21,11 @@ module.exports = {
           dark: '#656EA3',
           darkest: '#3A4374',
         },
+        gray: {
+          light: '#F7F8FD',
+          DEFAULT: '#F2F4FF',
+          dark: '#647196'
+        }
       },
       fontFamily: {
         jost: ['Jost']
