@@ -8,7 +8,6 @@ const Suggestions: React.FC = () => {
   useEffect(() => {
     (async () => {
       const { data } = await axios.get('http://localhost:5001/productRequests');
-      console.log(data);
       setProductRequests(data);
     })();
   }, []);
