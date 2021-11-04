@@ -3,7 +3,7 @@ module.exports = {
   darkMode: false, // or 'media' or 'class'
   theme: {
     borderRadius: {
-      'large': '10px'
+      large: '10px',
     },
     extend: {
       colors: {
@@ -24,16 +24,16 @@ module.exports = {
         gray: {
           light: '#F7F8FD',
           DEFAULT: '#F2F4FF',
-          dark: '#647196'
-        }
+          dark: '#647196',
+        },
       },
       fontFamily: {
-        jost: ['Jost']
-      }
+        jost: ['Jost'],
+      },
     },
   },
   variants: {
     extend: {},
   },
   plugins: [],
-}
+};
