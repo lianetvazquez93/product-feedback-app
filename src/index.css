@@ -5,16 +5,19 @@
 @tailwind utilities;
 
 @layer base {
-    h1 {
-        @apply text-2xl font-bold font-jost;
-    }
-    h2 {
-        @apply text-xl font-bold font-jost;
-    }
-    h3 {
-        @apply text-lg font-bold font-jost;
-    }
-    h4 {
-        @apply text-sm font-bold font-jost;
-    }
+  body {
+    @apply font-jost;
+  }
+  h1 {
+    @apply text-2xl font-bold font-jost;
+  }
+  h2 {
+    @apply text-xl font-bold font-jost;
+  }
+  h3 {
+    @apply text-lg font-bold font-jost;
+  }
+  h4 {
+    @apply text-sm font-bold font-jost;
+  }
 }

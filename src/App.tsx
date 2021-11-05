@@ -10,7 +10,7 @@ import Roadmap from './pages/Roadmap';
 const App: React.FC = () => {
   return (
     <BrowserRouter>
-      <div style={{ backgroundColor: '#F7F8FD' }}>
+      <div className="m-0 p-0 bg-gray-light">
         <Switch>
           <Route exact path="/" component={Suggestions} />
           <Route path="/new" component={NewFeedback} />

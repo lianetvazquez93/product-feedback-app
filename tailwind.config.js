@@ -18,8 +18,11 @@ module.exports = {
         blue: {
           light: '#7C91F9',
           DEFAULT: '#4661E6',
-          dark: '#656EA3',
-          darkest: '#3A4374',
+        },
+        indigo: {
+          light: '#656EA3',
+          DEFAULT: '#3A4374',
+          dark: '#373F68',
         },
         gray: {
           light: '#F7F8FD',
