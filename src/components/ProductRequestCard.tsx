@@ -28,7 +28,7 @@ const ProductRequestCard: React.FC<{ request: any }> = ({ request }) => {
             clipRule="evenodd"
           />
         </svg>
-        <span className="font-jost font-bold text-xs text-indigo ml-2">
+        <span className="font-jost font-bold text-base text-indigo ml-2">
           {request.comments ? request.comments.length : 0}
         </span>
       </div>
