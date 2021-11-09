@@ -20,7 +20,7 @@ const ProductRequestCard: React.FC<{ request: any }> = ({ request }) => {
           {request.category[0].toUpperCase() + request.category.slice(1)}
         </span>
       </div>
-      <div className="invisible h-0 md:visible md:h-9 md:pl-4 md:pr-3.5 md:my-auto">
+      <div className="invisible h-0 md:visible md:h-6 md:px-0 md:w-10 md:my-auto inline-block">
         <svg xmlns="http://www.w3.org/2000/svg" className="h-5 w-5 inline" viewBox="0 0 20 20" fill="#F2F4FF">
           <path
             fillRule="evenodd"
@@ -32,7 +32,7 @@ const ProductRequestCard: React.FC<{ request: any }> = ({ request }) => {
           {request.comments ? request.comments.length : 0}
         </span>
       </div>
-      <div className="mt-4 flex justify-between md:hidden">
+      <div className="mt-4 flex justify-between items-center md:hidden">
         <div className="bg-gray py-2 pl-4 pr-3.5 rounded-large inline-block">
           <svg xmlns="http://www.w3.org/2000/svg" className="h-5 w-5 inline" viewBox="0 0 20 20" fill="#4661E6">
             <path
@@ -43,7 +43,7 @@ const ProductRequestCard: React.FC<{ request: any }> = ({ request }) => {
           </svg>
           <span className="font-jost font-bold text-xs text-indigo ml-2">{request.upvotes}</span>
         </div>
-        <div className="py-2 pl-4 pr-3.5 inline-block">
+        <div className="pl-4 pr-3.5 inline-block">
           <svg xmlns="http://www.w3.org/2000/svg" className="h-5 w-5 inline" viewBox="0 0 20 20" fill="#F2F4FF">
             <path
               fillRule="evenodd"
@@ -51,9 +51,7 @@ const ProductRequestCard: React.FC<{ request: any }> = ({ request }) => {
               clipRule="evenodd"
             />
           </svg>
-          <span className="font-jost font-bold text-xs text-indigo ml-2">
-            {request.comments ? request.comments.length : 0}
-          </span>
+          <span className="font-bold text-xs text-indigo ml-2">{request.comments ? request.comments.length : 0}</span>
         </div>
       </div>
     </div>
