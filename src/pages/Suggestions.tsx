@@ -4,14 +4,27 @@ import ProductRequestsList from '../components/ProductRequestsList';
 
 const Suggestions: React.FC = () => {
   const [productRequests, setProductRequests] = useState<any>([]);
-  const [sortedBy, setSortedBy] = useState<string>('Most Upvotes');
+  const [sortType, setSortType] = useState<string>('Most Upvotes');
+
+  const sortData = (data: any) => {
+    switch (sortType) {
+      case 'Most Upvotes': {
+        setProductRequests(data.sort((a: any, b: any) => b.upvotes - a.upvotes));
+        break;
+      }
+      case 'Least Upvotes': {
+        setProductRequests(data.sort((a: any, b: any) => a.upvotes - b.upvotes));
+        break;
+      }
+    }
+  };
 
   useEffect(() => {
     (async () => {
       const { data } = await axios.get('http://localhost:5001/productRequests');
-      setProductRequests(data);
+      sortData(data);
     })();
-  }, []);
+  }, [sortType]);
 
   return (
     <div className="m-0 p-0">
@@ -41,12 +54,13 @@ const Suggestions: React.FC = () => {
             <select
               id="sort"
               className="border-0 ml-1 bg-transparent text-sm text-gray-light font-bold focus:border-0"
-              value={sortedBy}
+              value={sortType}
+              onChange={(e) => setSortType(e.target.value)}
             >
-              <option>Most Upvotes</option>
-              <option>Least Upvotes</option>
-              <option>Most Comments</option>
-              <option>Least Comments</option>
+              <option value="Most Upvotes">Most Upvotes</option>
+              <option value="Least Upvotes">Least Upvotes</option>
+              <option value="Most Comments">Most Comments</option>
+              <option value="Least Comments">Least Comments</option>
             </select>
           </div>
         </div>
