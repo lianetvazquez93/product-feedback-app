@@ -16,6 +16,22 @@ const Suggestions: React.FC = () => {
         setProductRequests(data.sort((a: any, b: any) => a.upvotes - b.upvotes));
         break;
       }
+      case 'Most Comments': {
+        setProductRequests(
+          data.sort(
+            (a: any, b: any) => (b.comments ? b.comments.length : 0) - (a.comments ? a.comments.length : 0) || b - a,
+          ),
+        );
+        break;
+      }
+      case 'Least Comments': {
+        setProductRequests(
+          data.sort(
+            (a: any, b: any) => (a.comments ? a.comments.length : 0) - (b.comments ? b.comments.length : 0) || a - b,
+          ),
+        );
+        break;
+      }
     }
   };
 
