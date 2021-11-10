@@ -44,6 +44,12 @@ const Suggestions: React.FC = () => {
 
   return (
     <div className="m-0 p-0">
+      <div className="px-6 h-20 bg-gradient-to-r from-primary via-secondary to-danger flex justify-between items-center md:invisible md:h-0">
+        <div>
+          <p className="font-bold text-base text-gray-light">Frontend Mentor</p>
+          <p className="font-medium text-sm text-gray-light">Feedback Board</p>
+        </div>
+      </div>
       <div className="flex justify-between items-center bg-indigo-dark pl-6 pr-3 py-2 mb-8 md:rounded-large md:py-3.5 md:mx-10">
         <div className="md:w-3/4 h-7">
           <div className="invisible w-0 h-0 md:visible md:inline md:w-52 md:h-7">

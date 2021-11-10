@@ -5,6 +5,11 @@ module.exports = {
     borderRadius: {
       large: '10px',
     },
+    gradientColorStops: (theme) => ({
+      primary: '#28A7ED',
+      secondary: '#A337F6',
+      danger: '#E84D70',
+    }),
     extend: {
       colors: {
         purple: {
