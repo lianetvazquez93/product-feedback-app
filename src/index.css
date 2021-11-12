@@ -7,6 +7,9 @@
 @layer base {
   body {
     @apply font-jost;
+    @apply m-0;
+    @apply p-0;
+    @apply bg-gray-light;
   }
   h1 {
     @apply text-2xl font-bold font-jost;

@@ -6,6 +6,15 @@ const Suggestions: React.FC = () => {
   const [productRequests, setProductRequests] = useState<any>([]);
   const [sortType, setSortType] = useState<string>('Most Upvotes');
 
+  const filterTypes = {
+    All: 'All',
+    UI: 'UI',
+    UX: 'UX',
+    Enhancement: 'Enhancement',
+    Bug: 'Bug',
+    Feature: 'Feature',
+  };
+
   const sortData = (data: any) => {
     switch (sortType) {
       case 'Most Upvotes': {
@@ -44,13 +53,36 @@ const Suggestions: React.FC = () => {
 
   return (
     <div className="m-0 p-0">
+      <div className="invisible bg-gray-light h-0 flex justify-between items-center md:visible md:h-44 md:mx-10 md:mt-14 md:mb-10 lg:invisible lg:h-0 lg:m-0">
+        <div className="bg-gradient-to-r from-primary via-secondary to-danger h-full rounded-large w-56 flex items-end">
+          <div className="ml-6 mb-6">
+            <p className="font-bold text-xl text-white">Frontend Mentor</p>
+            <p className="font-medium text-base text-white opacity-75">Feedback Board</p>
+          </div>
+        </div>
+        <div className="bg-white rounded-large w-56 h-full flex-none">
+          <div className="ml-6 mt-6 mr-4 flex flex-wrap justify-start">
+            {Object.keys(filterTypes).map((filter) => {
+              return (
+                <div
+                  key={filter}
+                  className="rounded-large px-4 py-1.5 mb-3.5 mr-auto inline-block align-middle flex-none text-blue text-sm font-semibold bg-gray-light"
+                >
+                  {filter}
+                </div>
+              );
+            })}
+          </div>
+        </div>
+        <div className="bg-white rounded-large w-56 h-full"></div>
+      </div>
       <div className="px-6 h-20 bg-gradient-to-r from-primary via-secondary to-danger flex justify-between items-center md:invisible md:h-0">
         <div>
-          <p className="font-bold text-base text-gray-light">Frontend Mentor</p>
-          <p className="font-medium text-sm text-gray-light">Feedback Board</p>
+          <p className="font-bold text-base text-white">Frontend Mentor</p>
+          <p className="font-medium text-sm text-white opacity-75">Feedback Board</p>
         </div>
       </div>
-      <div className="flex justify-between items-center bg-indigo-dark pl-6 pr-3 py-2 mb-8 md:rounded-large md:py-3.5 md:mx-10">
+      <div className="flex justify-between items-center bg-indigo-dark pl-6 pr-3 py-2 mb-8 md:rounded-large md:py-3.5 md:mx-10 lg:mt-24">
         <div className="md:w-3/4 h-7">
           <div className="invisible w-0 h-0 md:visible md:inline md:w-52 md:h-7">
             <svg

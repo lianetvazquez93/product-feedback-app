@@ -2,7 +2,7 @@ import React from 'react';
 
 const ProductRequestCard: React.FC<{ request: any }> = ({ request }) => {
   return (
-    <div className="bg-white rounded-large p-6 mb-4 mx-10 md:py-7 md:px-8 md:flex md:justify-between md:space-x-10">
+    <div className="bg-white rounded-large p-6 mb-4 mx-10 md:py-7 md:px-8 md:flex md:justify-between">
       <div className="bg-gray invisible h-0 md:px-3 md:py-2 md:rounded-large md:visible md:h-14">
         <svg xmlns="http://www.w3.org/2000/svg" className="h-5 w-5 block" viewBox="0 0 20 20" fill="#4661E6">
           <path
@@ -13,7 +13,7 @@ const ProductRequestCard: React.FC<{ request: any }> = ({ request }) => {
         </svg>
         <span className="font-jost font-bold text-xs text-indigo text-center block">{request.upvotes}</span>
       </div>
-      <div className="md:w-3/4">
+      <div className="md:w-3/4 md:py-0">
         <p className="font-jost font-bold text-indigo text-sm md:text-lg mb-2 md:mb-1">{request.title}</p>
         <p className="font-jost font-normal text-gray-dark text-sm md:text-base mb-2 md:mb-3">{request.description}</p>
         <span className="font-jost font-semibold text-sm text-blue px-4 py-1.5 bg-gray rounded-large">
@@ -32,7 +32,7 @@ const ProductRequestCard: React.FC<{ request: any }> = ({ request }) => {
           {request.comments ? request.comments.length : 0}
         </span>
       </div>
-      <div className="mt-4 flex justify-between items-center md:hidden">
+      <div className="flex justify-between items-center md:hidden">
         <div className="bg-gray py-2 pl-4 pr-3.5 rounded-large inline-block">
           <svg xmlns="http://www.w3.org/2000/svg" className="h-5 w-5 inline" viewBox="0 0 20 20" fill="#4661E6">
             <path
