@@ -41,7 +41,7 @@ const ProductRequestCard: React.FC<{ request: any }> = ({ request }) => {
               clipRule="evenodd"
             />
           </svg>
-          <span className="font-jost font-bold text-xs text-indigo ml-2">{request.upvotes}</span>
+          <span className="font-bold text-xs text-indigo ml-2">{request.upvotes}</span>
         </div>
         <div className="pl-4 pr-3.5 inline-block">
           <svg xmlns="http://www.w3.org/2000/svg" className="h-5 w-5 inline" viewBox="0 0 20 20" fill="#F2F4FF">

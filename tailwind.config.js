@@ -21,6 +21,7 @@ module.exports = {
           DEFAULT: '#D73737',
         },
         blue: {
+          lighter: '#CFD7FF',
           light: '#7C91F9',
           DEFAULT: '#4661E6',
         },

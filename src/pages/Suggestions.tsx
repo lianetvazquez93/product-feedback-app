@@ -2,17 +2,41 @@ import React, { useState, useEffect } from 'react';
 import axios from 'axios';
 import ProductRequestsList from '../components/ProductRequestsList';
 
+const filterTypes = {
+  All: 'All',
+  UI: 'UI',
+  UX: 'UX',
+  Enhancement: 'Enhancement',
+  Bug: 'Bug',
+  Feature: 'Feature',
+};
+
 const Suggestions: React.FC = () => {
   const [productRequests, setProductRequests] = useState<any>([]);
   const [sortType, setSortType] = useState<string>('Most Upvotes');
+  const [filterType, setFilterType] = useState<string>(filterTypes.All);
 
-  const filterTypes = {
-    All: 'All',
-    UI: 'UI',
-    UX: 'UX',
-    Enhancement: 'Enhancement',
-    Bug: 'Bug',
-    Feature: 'Feature',
+  const filterData = (data: any) => {
+    switch (filterType) {
+      case filterTypes.All: {
+        return data;
+      }
+      case filterTypes.UI: {
+        return data.filter((request: any) => request.category === 'ui');
+      }
+      case filterTypes.UX: {
+        return data.filter((request: any) => request.category === 'ux');
+      }
+      case filterTypes.Enhancement: {
+        return data.filter((request: any) => request.category === 'enhancement');
+      }
+      case filterTypes.Bug: {
+        return data.filter((request: any) => request.category === 'bug');
+      }
+      case filterTypes.Feature: {
+        return data.filter((request: any) => request.category === 'feature');
+      }
+    }
   };
 
   const sortData = (data: any) => {
@@ -47,9 +71,9 @@ const Suggestions: React.FC = () => {
   useEffect(() => {
     (async () => {
       const { data } = await axios.get('http://localhost:5001/productRequests');
-      sortData(data);
+      sortData(filterData(data));
     })();
-  }, [sortType]);
+  }, [sortType, filterType]);
 
   return (
     <div className="m-0 p-0">
@@ -64,12 +88,15 @@ const Suggestions: React.FC = () => {
           <div className="ml-6 mt-6 mr-4 flex flex-wrap justify-start">
             {Object.keys(filterTypes).map((filter) => {
               return (
-                <div
+                <button
                   key={filter}
-                  className="rounded-large px-4 py-1.5 mb-3.5 mr-auto inline-block align-middle flex-none text-blue text-sm font-semibold bg-gray-light"
+                  className={`rounded-large px-4 py-1.5 mb-3.5 mr-auto inline-block align-middle flex-none text-sm font-semibold ${
+                    filterType === filter ? 'text-white bg-blue' : 'text-blue bg-gray hover:bg-blue-lighter'
+                  }`}
+                  onClick={() => setFilterType(filter)}
                 >
                   {filter}
-                </div>
+                </button>
               );
             })}
           </div>
