@@ -1,6 +1,7 @@
 import React, { useState, useEffect } from 'react';
 import axios from 'axios';
 import ProductRequestsList from '../components/ProductRequestsList';
+import NoProductRequests from '../components/NoProductRequests';
 
 const filterTypes = {
   All: 'All',
@@ -149,7 +150,7 @@ const Suggestions: React.FC = () => {
           + Add Feedback
         </button>
       </div>
-      <ProductRequestsList productRequests={productRequests} />
+      {productRequests.length > 0 ? <ProductRequestsList productRequests={productRequests} /> : <NoProductRequests />}
     </div>
   );
 };
