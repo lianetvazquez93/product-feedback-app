@@ -3,7 +3,7 @@ import norequests from '../assets/norequests.png';
 
 const NoProductRequests: React.FC = () => {
   return (
-    <div className="rounded-large bg-white mx-6 mt-8 md:mx-10 md:mt-6 py-20 md:py-28 mb-10">
+    <div className="rounded-large bg-white mx-6 md:mx-0 mt-8 md:mt-6 py-20 md:py-28">
       <div className="mx-auto w-72 md:w-2/3 text-center">
         <img className="mx-auto" src={norequests} />
         <p className="font-bold text-indigo text-lg md:text-2xl mt-10 md:mt-14">There is no feedback yet.</p>
