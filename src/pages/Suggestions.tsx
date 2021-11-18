@@ -3,6 +3,7 @@ import axios from 'axios';
 import ProductRequestsList from '../components/ProductRequestsList';
 import NoProductRequests from '../components/NoProductRequests';
 import NavbarRoadmap from '../components/NavbarRoadmap';
+import NavbarFilters from '../components/NavbarFilters';
 
 const filterTypes = {
   All: 'All',
@@ -79,10 +80,10 @@ const Suggestions: React.FC = () => {
 
   return (
     <div
-      className="m-0 pb-6 flex items-start justify-center w-100 md:justify-between lg:mx-auto"
+      className="m-0 pb-6 flex items-start justify-center w-100 md:justify-between lg:mx-auto lg:px-4"
       style={{ maxWidth: '70rem' }}
     >
-      <div className="w-0 invisible lg:visible lg:w-64 flex flex-col mt-24">
+      <div className="w-0 invisible lg:visible lg:w-64 flex flex-col mt-24 sticky top-24">
         <div className="w-full rounded-large bg-gradient-to-r from-primary via-secondary to-danger h-36 flex items-end">
           <div className="ml-6 mb-6">
             <p className="font-bold text-white text-xl">Frontend Mentor</p>
@@ -90,27 +91,13 @@ const Suggestions: React.FC = () => {
           </div>
         </div>
         <div className="bg-white rounded-large w-full mt-6 h-44">
-          <div className="ml-6 mt-6 mr-12 flex flex-wrap justify-start">
-            {Object.keys(filterTypes).map((filter) => {
-              return (
-                <button
-                  key={filter}
-                  className={`rounded-large px-4 py-1.5 mb-3.5 mr-auto inline-block align-middle flex-none text-sm font-semibold ${
-                    filterType === filter ? 'text-white bg-blue' : 'text-blue bg-gray hover:bg-blue-lighter'
-                  }`}
-                  onClick={() => setFilterType(filter)}
-                >
-                  {filter}
-                </button>
-              );
-            })}
-          </div>
+          <NavbarFilters selectFilter={setFilterType} filterTypes={filterTypes} filterType={filterType} />
         </div>
         <div className="bg-white rounded-large w-full mt-6 h-44">
           <NavbarRoadmap productRequests={productRequests} />
         </div>
       </div>
-      <div className="w-full md:px-10 lg:w-3/4">
+      <div className="w-full md:px-10 lg:w-3/4 lg:pr-0">
         <div className="invisible bg-gray-light h-0 flex justify-between items-center md:visible md:h-44 md:mt-14 md:mb-10 lg:invisible lg:h-0 lg:m-0">
           <div className="bg-gradient-to-r from-primary via-secondary to-danger h-full rounded-large w-56 flex items-end">
             <div className="ml-6 mb-6">
@@ -119,21 +106,7 @@ const Suggestions: React.FC = () => {
             </div>
           </div>
           <div className="bg-white rounded-large w-56 h-full">
-            <div className="ml-6 mt-6 mr-4 flex flex-wrap justify-start">
-              {Object.keys(filterTypes).map((filter) => {
-                return (
-                  <button
-                    key={filter}
-                    className={`rounded-large px-4 py-1.5 mb-3.5 mr-auto inline-block align-middle flex-none text-sm font-semibold ${
-                      filterType === filter ? 'text-white bg-blue' : 'text-blue bg-gray hover:bg-blue-lighter'
-                    }`}
-                    onClick={() => setFilterType(filter)}
-                  >
-                    {filter}
-                  </button>
-                );
-              })}
-            </div>
+            <NavbarFilters selectFilter={setFilterType} filterTypes={filterTypes} filterType={filterType} />
           </div>
           <div className="bg-white rounded-large w-56 h-full">
             <NavbarRoadmap productRequests={productRequests} />
