@@ -1,5 +1,6 @@
 import React, { useState, useEffect } from 'react';
 import axios from 'axios';
+import { Link } from 'react-router-dom';
 import ProductRequestsList from '../components/ProductRequestsList';
 import NoProductRequests from '../components/NoProductRequests';
 import NavbarRoadmap from '../components/NavbarRoadmap';
@@ -18,6 +19,7 @@ const Suggestions: React.FC = () => {
   const [productRequests, setProductRequests] = useState<any>([]);
   const [sortType, setSortType] = useState<string>('Most Upvotes');
   const [filterType, setFilterType] = useState<string>(filterTypes.All);
+  const [navbarVisible, setNavbarVisible] = useState<boolean>(false);
 
   const filterData = (data: any) => {
     switch (filterType) {
@@ -117,6 +119,35 @@ const Suggestions: React.FC = () => {
             <p className="font-bold text-base text-white">Frontend Mentor</p>
             <p className="font-medium text-sm text-white opacity-75">Feedback Board</p>
           </div>
+          <div className="w-6 h-6 md:h-0 md:w-0 md:invisible">
+            <button onClick={() => setNavbarVisible(false)}>
+              <svg
+                xmlns="http://www.w3.org/2000/svg"
+                className={`${navbarVisible ? 'h-6 w-6 visible' : 'h-0 w-0 invisible'} md:w-0 md:h-0 md:invisible`}
+                fill="none"
+                viewBox="0 0 24 24"
+                stroke="#FFFFFF"
+              >
+                <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M6 18L18 6M6 6l12 12" />
+              </svg>
+            </button>
+            <button onClick={() => setNavbarVisible(true)}>
+              <svg
+                xmlns="http://www.w3.org/2000/svg"
+                className={`${navbarVisible ? 'h-0 w-0 invisible' : 'h-6 w-6 visible'} md:w-0 md:h-0 md:invisible`}
+                fill="none"
+                viewBox="0 0 24 24"
+                stroke="#FFFFFF"
+              >
+                <path
+                  strokeLinecap="round"
+                  strokeLinejoin="round"
+                  strokeWidth={2}
+                  d="M4 6h16M4 10h16M4 14h16M4 18h16"
+                />
+              </svg>
+            </button>
+          </div>
         </div>
         <div className="flex justify-between items-center bg-indigo-dark pl-6 pr-3 py-2 mb-8 md:rounded-large md:py-3.5 lg:mt-24">
           <div className="md:w-3/4 h-7">
@@ -154,9 +185,12 @@ const Suggestions: React.FC = () => {
               </select>
             </div>
           </div>
-          <button className="bg-purple text-sm text-gray-light font-jost font-bold rounded-large h-10 px-4 hover:bg-purple-light md:h-11">
+          <Link
+            to="/new"
+            className="inline-block align-middle bg-purple text-sm text-gray-light font-bold rounded-large hover:bg-purple-light py-2.5 px-4 md:py-3"
+          >
             + Add Feedback
-          </button>
+          </Link>
         </div>
         {productRequests.length > 0 ? <ProductRequestsList productRequests={productRequests} /> : <NoProductRequests />}
       </div>

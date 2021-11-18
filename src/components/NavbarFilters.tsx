@@ -2,7 +2,7 @@ import React from 'react';
 
 const NavbarFilters: React.FC<any> = ({ selectFilter, filterTypes, filterType }) => {
   return (
-    <div className="ml-6 mt-6 md:mr-4 lg:mr-12 flex flex-wrap justify-start">
+    <div className="ml-6 mt-6 mr-4 lg:mr-12 flex flex-wrap justify-start">
       {Object.keys(filterTypes).map((filter) => {
         return (
           <button

@@ -2,7 +2,7 @@ import React from 'react';
 
 const ProductRequestCard: React.FC<{ request: any }> = ({ request }) => {
   return (
-    <div className="bg-white rounded-large p-6 mb-4 mx-10 md:mx-0 md:py-7 md:px-8 md:flex md:justify-between">
+    <div className="bg-white rounded-large p-6 mb-4 mx-6 md:mx-0 md:py-7 md:px-8 md:flex md:justify-between">
       <div className="bg-gray invisible h-0 md:px-3 md:py-2 md:rounded-large md:visible md:h-14">
         <svg xmlns="http://www.w3.org/2000/svg" className="h-5 w-5 block" viewBox="0 0 20 20" fill="#4661E6">
           <path
