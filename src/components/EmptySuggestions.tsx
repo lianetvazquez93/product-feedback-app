@@ -1,11 +1,11 @@
 import React from 'react';
-import norequests from '../assets/norequests.png';
+import emptysuggestions from '../assets/emptysuggestions.png';
 
-const NoProductRequests: React.FC = () => {
+const EmptySuggestions: React.FC = () => {
   return (
     <div className="rounded-large bg-white mx-6 md:mx-0 mt-8 md:mt-6 py-20 md:py-28">
       <div className="mx-auto w-72 md:w-2/3 text-center">
-        <img className="mx-auto" src={norequests} />
+        <img className="mx-auto" src={emptysuggestions} />
         <p className="font-bold text-indigo text-lg md:text-2xl mt-10 md:mt-14">There is no feedback yet.</p>
         <p className="font-normal text-sm md:text-base text-gray-dark mt-3.5 md:mt-4">
           Got a suggestion? Found a bug that needs to be squashed? We love hearing about new ideas to improve our app.
@@ -18,4 +18,4 @@ const NoProductRequests: React.FC = () => {
   );
 };
 
-export default NoProductRequests;
+export default EmptySuggestions;
