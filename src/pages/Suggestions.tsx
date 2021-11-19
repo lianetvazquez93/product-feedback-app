@@ -180,7 +180,10 @@ const Suggestions: React.FC = () => {
             </div>
           </div>
         </aside>
-        <div className="flex justify-between items-center bg-indigo-dark pl-6 pr-3 py-2 mb-8 md:rounded-large md:py-3.5 lg:mt-24">
+        <div
+          className={`absolute top-20 bg-black bg-opacity-75 z-20 ${navbarVisible ? 'bottom-0 w-full' : 'h-0 w-0'}`}
+        ></div>
+        <div className="flex justify-between items-center bg-indigo-dark pl-6 pr-3 py-2 mb-8 md:rounded-large md:py-3.5 lg:mt-24 z-10">
           <div className="md:w-3/4 h-7">
             <div className="invisible w-0 h-0 md:visible md:inline md:w-52 md:h-7">
               <svg
@@ -223,7 +226,13 @@ const Suggestions: React.FC = () => {
             + Add Feedback
           </Link>
         </div>
-        {productRequests.length > 0 ? <ProductRequestsList productRequests={productRequests} /> : <EmptySuggestions />}
+        <div className="z-10">
+          {productRequests.length > 0 ? (
+            <ProductRequestsList productRequests={productRequests} />
+          ) : (
+            <EmptySuggestions />
+          )}
+        </div>
       </div>
     </div>
   );
