@@ -8,11 +8,11 @@ const NavbarFilters: React.FC<any> = ({ selectFilter, filterTypes, filterType })
           <button
             key={filter}
             className={`rounded-large px-4 py-1.5 mb-3.5 mr-auto inline-block align-middle flex-none text-sm font-semibold ${
-              filterType === filter ? 'text-white bg-blue' : 'text-blue bg-gray hover:bg-blue-lighter'
+              filterType === filterTypes[filter] ? 'text-white bg-blue' : 'text-blue bg-gray hover:bg-blue-lighter'
             }`}
-            onClick={() => selectFilter(filter)}
+            onClick={() => selectFilter(filterTypes[filter])}
           >
-            {filter}
+            {filterTypes[filter]}
           </button>
         );
       })}

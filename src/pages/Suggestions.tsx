@@ -7,38 +7,46 @@ import NavbarRoadmap from '../components/NavbarRoadmap';
 import NavbarFilters from '../components/NavbarFilters';
 
 const filterTypes = {
-  All: 'All',
-  UI: 'UI',
-  UX: 'UX',
-  Enhancement: 'Enhancement',
-  Bug: 'Bug',
-  Feature: 'Feature',
+  all: 'All',
+  ui: 'UI',
+  ux: 'UX',
+  enhancement: 'Enhancement',
+  bug: 'Bug',
+  feature: 'Feature',
+};
+
+const sortTypes = {
+  mostUpvotes: 'Most Upvotes',
+  leastUpvotes: 'Least Upvotes',
+  mostComments: 'Most Comments',
+  leastComments: 'Least Comments',
 };
 
 const Suggestions: React.FC = () => {
   const [productRequests, setProductRequests] = useState<any>([]);
-  const [sortType, setSortType] = useState<string>('Most Upvotes');
-  const [filterType, setFilterType] = useState<string>(filterTypes.All);
+  const [sortType, setSortType] = useState<string>(sortTypes.mostUpvotes);
+  const [filterType, setFilterType] = useState<string>(filterTypes.all);
   const [navbarVisible, setNavbarVisible] = useState<boolean>(false);
+  const [dropdownVisible, setDropdownVisible] = useState<boolean>(false);
 
   const filterData = (data: any) => {
     switch (filterType) {
-      case filterTypes.All: {
+      case filterTypes.all: {
         return data;
       }
-      case filterTypes.UI: {
+      case filterTypes.ui: {
         return data.filter((request: any) => request.category === 'ui');
       }
-      case filterTypes.UX: {
+      case filterTypes.ux: {
         return data.filter((request: any) => request.category === 'ux');
       }
-      case filterTypes.Enhancement: {
+      case filterTypes.enhancement: {
         return data.filter((request: any) => request.category === 'enhancement');
       }
-      case filterTypes.Bug: {
+      case filterTypes.bug: {
         return data.filter((request: any) => request.category === 'bug');
       }
-      case filterTypes.Feature: {
+      case filterTypes.feature: {
         return data.filter((request: any) => request.category === 'feature');
       }
     }
@@ -46,15 +54,15 @@ const Suggestions: React.FC = () => {
 
   const sortData = (data: any) => {
     switch (sortType) {
-      case 'Most Upvotes': {
+      case sortTypes.mostUpvotes: {
         setProductRequests(data.sort((a: any, b: any) => b.upvotes - a.upvotes));
         break;
       }
-      case 'Least Upvotes': {
+      case sortTypes.leastUpvotes: {
         setProductRequests(data.sort((a: any, b: any) => a.upvotes - b.upvotes));
         break;
       }
-      case 'Most Comments': {
+      case sortTypes.mostComments: {
         setProductRequests(
           data.sort(
             (a: any, b: any) => (b.comments ? b.comments.length : 0) - (a.comments ? a.comments.length : 0) || b - a,
@@ -62,7 +70,7 @@ const Suggestions: React.FC = () => {
         );
         break;
       }
-      case 'Least Comments': {
+      case sortTypes.leastComments: {
         setProductRequests(
           data.sort(
             (a: any, b: any) => (a.comments ? a.comments.length : 0) - (b.comments ? b.comments.length : 0) || a - b,
@@ -76,6 +84,11 @@ const Suggestions: React.FC = () => {
     if (window.innerWidth >= 768) {
       setNavbarVisible(false);
     }
+  };
+
+  const selectSortType = (sortValue: string) => {
+    setSortType(sortValue);
+    setDropdownVisible(false);
   };
 
   useEffect(() => {
@@ -202,22 +215,131 @@ const Suggestions: React.FC = () => {
               </svg>
               <span className="ml-4 text-gray-light font-bold text-lg my-auto">{`${productRequests.length} Suggestions`}</span>
             </div>
-            <div className="md:inline md:ml-10">
+            <button
+              className="md:ml-10 text-sm text-gray-light inline"
+              onClick={() => setDropdownVisible(!dropdownVisible)}
+            >
+              <span>Sort by:</span>
+              <span className="ml-1 font-bold mr-2">{sortType}</span>
+              <svg
+                xmlns="http://www.w3.org/2000/svg"
+                className={`inline ${dropdownVisible ? 'h-0 w-0' : 'h-5 w-5'}`}
+                viewBox="0 0 20 20"
+                fill="#FFFFFF"
+              >
+                <path
+                  fillRule="evenodd"
+                  d="M5.293 7.293a1 1 0 011.414 0L10 10.586l3.293-3.293a1 1 0 111.414 1.414l-4 4a1 1 0 01-1.414 0l-4-4a1 1 0 010-1.414z"
+                  clipRule="evenodd"
+                />
+              </svg>
+              <svg
+                xmlns="http://www.w3.org/2000/svg"
+                className={`inline ${dropdownVisible ? 'h-5 w-5' : 'h-0 w-0'}`}
+                viewBox="0 0 20 20"
+                fill="#FFFFFF"
+              >
+                <path
+                  fillRule="evenodd"
+                  d="M14.707 12.707a1 1 0 01-1.414 0L10 9.414l-3.293 3.293a1 1 0 01-1.414-1.414l4-4a1 1 0 011.414 0l4 4a1 1 0 010 1.414z"
+                  clipRule="evenodd"
+                />
+              </svg>
+            </button>
+            <div
+              className={`absolute left-0 md:left-64 lg:left-1/2 mt-10 bg-white rounded-large ${
+                dropdownVisible ? 'w-64 h-48 shadow-xl' : 'w-0 h-0 invisible'
+              }`}
+            >
+              <button
+                className="flex px-6 w-full h-1/4 justify-between items-center border-b border-indigo border-opacity-20 text-gray-dark hover:text-purple"
+                onClick={() => selectSortType(sortTypes.mostUpvotes)}
+              >
+                <span>{sortTypes.mostUpvotes}</span>
+                <svg
+                  xmlns="http://www.w3.org/2000/svg"
+                  className={`inline ${sortType === sortTypes.mostUpvotes ? 'h-5 w-5' : 'h-0 w-0'}`}
+                  viewBox="0 0 20 20"
+                  fill="#AD1FEA"
+                >
+                  <path
+                    fillRule="evenodd"
+                    d="M16.707 5.293a1 1 0 010 1.414l-8 8a1 1 0 01-1.414 0l-4-4a1 1 0 011.414-1.414L8 12.586l7.293-7.293a1 1 0 011.414 0z"
+                    clipRule="evenodd"
+                  />
+                </svg>
+              </button>
+              <button
+                className="flex px-6 justify-between items-center w-full h-1/4 border-b border-indigo border-opacity-20 text-gray-dark hover:text-purple"
+                onClick={() => selectSortType(sortTypes.leastUpvotes)}
+              >
+                <span>{sortTypes.leastUpvotes}</span>
+                <svg
+                  xmlns="http://www.w3.org/2000/svg"
+                  className={`inline ${sortType === sortTypes.leastUpvotes ? 'h-5 w-5' : 'h-0 w-0'}`}
+                  viewBox="0 0 20 20"
+                  fill="#AD1FEA"
+                >
+                  <path
+                    fillRule="evenodd"
+                    d="M16.707 5.293a1 1 0 010 1.414l-8 8a1 1 0 01-1.414 0l-4-4a1 1 0 011.414-1.414L8 12.586l7.293-7.293a1 1 0 011.414 0z"
+                    clipRule="evenodd"
+                  />
+                </svg>
+              </button>
+              <button
+                className="flex px-6 justify-between items-center w-full h-1/4 border-b border-indigo border-opacity-20 text-gray-dark hover:text-purple"
+                onClick={() => selectSortType(sortTypes.mostComments)}
+              >
+                <span>{sortTypes.mostComments}</span>
+                <svg
+                  xmlns="http://www.w3.org/2000/svg"
+                  className={`inline ${sortType === sortTypes.mostComments ? 'h-5 w-5' : 'h-0 w-0'}`}
+                  viewBox="0 0 20 20"
+                  fill="#AD1FEA"
+                >
+                  <path
+                    fillRule="evenodd"
+                    d="M16.707 5.293a1 1 0 010 1.414l-8 8a1 1 0 01-1.414 0l-4-4a1 1 0 011.414-1.414L8 12.586l7.293-7.293a1 1 0 011.414 0z"
+                    clipRule="evenodd"
+                  />
+                </svg>
+              </button>
+              <button
+                className="flex px-6 justify-between items-center w-full h-1/4 text-gray-dark hover:text-purple"
+                onClick={() => selectSortType(sortTypes.leastComments)}
+              >
+                <span>{sortTypes.leastComments}</span>
+                <svg
+                  xmlns="http://www.w3.org/2000/svg"
+                  className={`inline ${sortType === sortTypes.leastComments ? 'h-5 w-5' : 'h-0 w-0'}`}
+                  viewBox="0 0 20 20"
+                  fill="#AD1FEA"
+                >
+                  <path
+                    fillRule="evenodd"
+                    d="M16.707 5.293a1 1 0 010 1.414l-8 8a1 1 0 01-1.414 0l-4-4a1 1 0 011.414-1.414L8 12.586l7.293-7.293a1 1 0 011.414 0z"
+                    clipRule="evenodd"
+                  />
+                </svg>
+              </button>
+            </div>
+            {/* <div className="md:inline md:ml-10">
               <label htmlFor="sort" className="text-sm text-gray-light">
                 Sort by:
               </label>
               <select
                 id="sort"
-                className="border-0 ml-1 bg-transparent text-sm text-gray-light font-bold focus:border-0"
+                className="border-0 ml-1 bg-transparent text-sm text-gray-light font-bold outline-none"
                 value={sortType}
                 onChange={(e) => setSortType(e.target.value)}
               >
-                <option value="Most Upvotes">Most Upvotes</option>
-                <option value="Least Upvotes">Least Upvotes</option>
-                <option value="Most Comments">Most Comments</option>
-                <option value="Least Comments">Least Comments</option>
+                <option value={sortTypes.mostUpvotes}>{sortTypes.mostUpvotes}</option>
+                <option value={sortTypes.leastUpvotes}>{sortTypes.leastUpvotes}</option>
+                <option value={sortTypes.mostComments}>{sortTypes.mostComments}</option>
+                <option value={sortTypes.leastUpvotes}>{sortTypes.leastComments}</option>
               </select>
-            </div>
+            </div> */}
           </div>
           <Link
             to="/new"
