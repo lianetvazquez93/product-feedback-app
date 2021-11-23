@@ -1,4 +1,5 @@
 import React from 'react';
+import { Link } from 'react-router-dom';
 import emptysuggestions from '../assets/emptysuggestions.png';
 
 const EmptySuggestions: React.FC = () => {
@@ -7,12 +8,15 @@ const EmptySuggestions: React.FC = () => {
       <div className="mx-auto w-72 md:w-2/3 text-center">
         <img className="mx-auto" src={emptysuggestions} />
         <p className="font-bold text-indigo text-lg md:text-2xl mt-10 md:mt-14">There is no feedback yet.</p>
-        <p className="font-normal text-sm md:text-base text-gray-dark mt-3.5 md:mt-4">
+        <p className="font-normal text-sm md:text-base text-gray-dark mt-3.5 md:mt-4 mb-6 md:mb-12">
           Got a suggestion? Found a bug that needs to be squashed? We love hearing about new ideas to improve our app.
         </p>
-        <button className="mx-auto bg-purple text-sm text-gray-light font-bold rounded-large h-10 px-4 hover:bg-purple-light md:h-11 mt-6 md:mt-12">
+        <Link
+          to="/new"
+          className="mx-auto bg-purple text-sm text-gray-light font-bold rounded-large py-2.5 px-4 hover:bg-purple-light md:py-3 md:px-6"
+        >
           + Add Feedback
-        </button>
+        </Link>
       </div>
     </div>
   );

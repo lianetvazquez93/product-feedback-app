@@ -324,22 +324,6 @@ const Suggestions: React.FC = () => {
                 </svg>
               </button>
             </div>
-            {/* <div className="md:inline md:ml-10">
-              <label htmlFor="sort" className="text-sm text-gray-light">
-                Sort by:
-              </label>
-              <select
-                id="sort"
-                className="border-0 ml-1 bg-transparent text-sm text-gray-light font-bold outline-none"
-                value={sortType}
-                onChange={(e) => setSortType(e.target.value)}
-              >
-                <option value={sortTypes.mostUpvotes}>{sortTypes.mostUpvotes}</option>
-                <option value={sortTypes.leastUpvotes}>{sortTypes.leastUpvotes}</option>
-                <option value={sortTypes.mostComments}>{sortTypes.mostComments}</option>
-                <option value={sortTypes.leastUpvotes}>{sortTypes.leastComments}</option>
-              </select>
-            </div> */}
           </div>
           <Link
             to="/new"
