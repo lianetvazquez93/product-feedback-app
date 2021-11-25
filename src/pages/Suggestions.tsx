@@ -80,10 +80,10 @@ const Suggestions: React.FC = () => {
       }
     }
   };
-  const handleResize = () => {
-    if (window.innerWidth >= 768) {
-      setNavbarVisible(false);
-    }
+
+  const updateProductRequests = async () => {
+    const { data } = await axios.get('http://localhost:5001/productRequests');
+    sortData(filterData(data));
   };
 
   const selectSortType = (sortValue: string) => {
@@ -92,6 +92,12 @@ const Suggestions: React.FC = () => {
   };
 
   useEffect(() => {
+    const handleResize = () => {
+      if (window.innerWidth >= 768) {
+        setNavbarVisible(false);
+      }
+    };
+
     window.addEventListener('resize', handleResize);
   });
 
@@ -247,7 +253,7 @@ const Suggestions: React.FC = () => {
               </svg>
             </button>
             <div
-              className={`absolute left-0 md:left-64 lg:left-1/2 mt-10 bg-white rounded-large ${
+              className={`absolute left-4 md:left-64 lg:left-1/2 mt-10 bg-white rounded-large ${
                 dropdownVisible ? 'w-64 h-48 shadow-xl' : 'w-0 h-0 invisible'
               }`}
             >
@@ -334,7 +340,7 @@ const Suggestions: React.FC = () => {
         </div>
         <div className="z-10">
           {productRequests.length > 0 ? (
-            <ProductRequestsList productRequests={productRequests} />
+            <ProductRequestsList productRequests={productRequests} updateProductRequests={updateProductRequests} />
           ) : (
             <EmptySuggestions />
           )}
