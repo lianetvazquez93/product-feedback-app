@@ -18,7 +18,7 @@ interface Comment {
   user: User;
 }
 
-interface ProductRequest {
+export interface ProductRequest {
   id: number;
   title: string;
   category: string;

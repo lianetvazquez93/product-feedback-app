@@ -1,15 +1,21 @@
 import React from 'react';
 import axios from 'axios';
+import { ProductRequest } from '../pages/Suggestions';
 
-const ProductRequestsList: React.FC<any> = ({ productRequests, updateProductRequests }) => {
-  const increaseUpvotes = async (request: any) => {
+interface ProductRequestListProps {
+  productRequests: ProductRequest[];
+  updateProductRequests: () => void;
+}
+
+const ProductRequestsList: React.FC<ProductRequestListProps> = ({ productRequests, updateProductRequests }) => {
+  const increaseUpvotes = async (request: ProductRequest) => {
     await axios.patch(`http://localhost:5001/productRequests/${request.id}`, { upvotes: request.upvotes + 1 });
     updateProductRequests();
   };
   return (
     <div>
       <ul className="mt-8">
-        {productRequests.map((request: any) => (
+        {productRequests.map((request: ProductRequest) => (
           <div
             key={request.title}
             className="bg-white rounded-large p-6 mb-4 mx-6 md:mx-0 md:py-7 md:px-8 md:flex md:justify-between"
