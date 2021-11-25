@@ -5,6 +5,7 @@ import ProductRequestsList from '../components/ProductRequestsList';
 import EmptySuggestions from '../components/EmptySuggestions';
 import NavbarRoadmap from '../components/NavbarRoadmap';
 import NavbarFilters from '../components/NavbarFilters';
+import { StringLiteralLike } from 'typescript';
 
 interface User {
   image: string;
@@ -28,7 +29,16 @@ export interface ProductRequest {
   comments?: Comment[];
 }
 
-const filterTypes = {
+export interface FilterTypes {
+  all: string;
+  ui: string;
+  ux: string;
+  enhancement: string;
+  bug: string;
+  feature: string;
+}
+
+export const filterTypes: FilterTypes = {
   all: 'All',
   ui: 'UI',
   ux: 'UX',
@@ -156,7 +166,7 @@ const Suggestions: React.FC = () => {
           </div>
         </div>
         <div className="bg-white rounded-large w-full mt-6 h-44">
-          <NavbarFilters selectFilter={setFilterType} filterTypes={filterTypes} filterType={filterType} />
+          <NavbarFilters selectFilter={setFilterType} filterType={filterType} />
         </div>
         <div className="bg-white rounded-large w-full mt-6 h-44">
           <NavbarRoadmap productRequests={productRequests} />
@@ -171,7 +181,7 @@ const Suggestions: React.FC = () => {
             </div>
           </div>
           <div className="bg-white rounded-large w-56 h-full">
-            <NavbarFilters selectFilter={setFilterType} filterTypes={filterTypes} filterType={filterType} />
+            <NavbarFilters selectFilter={setFilterType} filterType={filterType} />
           </div>
           <div className="bg-white rounded-large w-56 h-full">
             <NavbarRoadmap productRequests={productRequests} />
@@ -219,7 +229,7 @@ const Suggestions: React.FC = () => {
         >
           <div className="mx-6 mt-6 flex flex-col">
             <div className="w-full bg-white rounded-large h-44">
-              <NavbarFilters selectFilter={setFilterType} filterTypes={filterTypes} filterType={filterType} />
+              <NavbarFilters selectFilter={setFilterType} filterType={filterType} />
             </div>
             <div className="w-full bg-white rounded-large mt-6 h-44">
               <NavbarRoadmap productRequests={productRequests} />
