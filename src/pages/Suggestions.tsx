@@ -6,6 +6,28 @@ import EmptySuggestions from '../components/EmptySuggestions';
 import NavbarRoadmap from '../components/NavbarRoadmap';
 import NavbarFilters from '../components/NavbarFilters';
 
+interface User {
+  image: string;
+  name: string;
+  username: string;
+}
+
+interface Comment {
+  id: number;
+  content: string;
+  user: User;
+}
+
+interface ProductRequest {
+  id: number;
+  title: string;
+  category: string;
+  upvotes: number;
+  status: string;
+  description: string;
+  comments?: Comment[];
+}
+
 const filterTypes = {
   all: 'All',
   ui: 'UI',
@@ -23,49 +45,53 @@ const sortTypes = {
 };
 
 const Suggestions: React.FC = () => {
-  const [productRequests, setProductRequests] = useState<any>([]);
+  const [productRequests, setProductRequests] = useState<ProductRequest[]>([]);
   const [sortType, setSortType] = useState<string>(sortTypes.mostUpvotes);
   const [filterType, setFilterType] = useState<string>(filterTypes.all);
   const [navbarVisible, setNavbarVisible] = useState<boolean>(false);
   const [dropdownVisible, setDropdownVisible] = useState<boolean>(false);
 
-  const filterData = (data: any) => {
+  const filterData = (data: ProductRequest[]): ProductRequest[] => {
     switch (filterType) {
       case filterTypes.all: {
         return data;
       }
       case filterTypes.ui: {
-        return data.filter((request: any) => request.category === 'ui');
+        return data.filter((request: ProductRequest) => request.category === 'ui');
       }
       case filterTypes.ux: {
-        return data.filter((request: any) => request.category === 'ux');
+        return data.filter((request: ProductRequest) => request.category === 'ux');
       }
       case filterTypes.enhancement: {
-        return data.filter((request: any) => request.category === 'enhancement');
+        return data.filter((request: ProductRequest) => request.category === 'enhancement');
       }
       case filterTypes.bug: {
-        return data.filter((request: any) => request.category === 'bug');
+        return data.filter((request: ProductRequest) => request.category === 'bug');
       }
       case filterTypes.feature: {
-        return data.filter((request: any) => request.category === 'feature');
+        return data.filter((request: ProductRequest) => request.category === 'feature');
+      }
+      default: {
+        return data;
       }
     }
   };
 
-  const sortData = (data: any) => {
+  const sortData = (data: ProductRequest[]) => {
     switch (sortType) {
       case sortTypes.mostUpvotes: {
-        setProductRequests(data.sort((a: any, b: any) => b.upvotes - a.upvotes));
+        setProductRequests(data.sort((a: ProductRequest, b: ProductRequest) => b.upvotes - a.upvotes));
         break;
       }
       case sortTypes.leastUpvotes: {
-        setProductRequests(data.sort((a: any, b: any) => a.upvotes - b.upvotes));
+        setProductRequests(data.sort((a: ProductRequest, b: ProductRequest) => a.upvotes - b.upvotes));
         break;
       }
       case sortTypes.mostComments: {
         setProductRequests(
           data.sort(
-            (a: any, b: any) => (b.comments ? b.comments.length : 0) - (a.comments ? a.comments.length : 0) || b - a,
+            (a: ProductRequest, b: ProductRequest) =>
+              (b.comments ? b.comments.length : 0) - (a.comments ? a.comments.length : 0),
           ),
         );
         break;
@@ -73,7 +99,8 @@ const Suggestions: React.FC = () => {
       case sortTypes.leastComments: {
         setProductRequests(
           data.sort(
-            (a: any, b: any) => (a.comments ? a.comments.length : 0) - (b.comments ? b.comments.length : 0) || a - b,
+            (a: ProductRequest, b: ProductRequest) =>
+              (a.comments ? a.comments.length : 0) - (b.comments ? b.comments.length : 0),
           ),
         );
         break;
