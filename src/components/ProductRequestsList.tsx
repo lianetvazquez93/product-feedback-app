@@ -1,4 +1,5 @@
 import React from 'react';
+import { Link } from 'react-router-dom';
 import { ProductRequest } from '../pages/Suggestions';
 import ProductRequestCard from './ProductRequestCard';
 
@@ -12,7 +13,9 @@ const ProductRequestsList: React.FC<ProductRequestListProps> = ({ productRequest
     <div>
       <ul className="mt-8">
         {productRequests.map((request: ProductRequest) => (
-          <ProductRequestCard key={request.id} request={request} updateProductRequests={updateProductRequests} />
+          <Link key={request.id} to={`/details/${request.id}`}>
+            <ProductRequestCard request={request} updateProductRequests={updateProductRequests} />
+          </Link>
         ))}
       </ul>
     </div>

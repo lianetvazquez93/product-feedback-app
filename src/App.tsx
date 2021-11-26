@@ -16,7 +16,7 @@ const App: React.FC = () => {
           <Route path="/new" component={NewFeedback} />
           <Route path="/edit" component={EditFeedback} />
           <Route path="/roadmap" component={Roadmap} />
-          <Route path="/detail" component={FeedbackDetail} />
+          <Route path="/details/:id" component={FeedbackDetail} />
         </Switch>
       </div>
     </BrowserRouter>

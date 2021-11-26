@@ -23,4 +23,8 @@
   h4 {
     @apply text-sm font-bold font-jost;
   }
+
+  .product-request-card:hover .product-request-title {
+    @apply text-blue;
+  }
 }

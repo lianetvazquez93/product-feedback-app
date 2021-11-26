@@ -14,7 +14,7 @@ const ProductRequestCard: React.FC<ProductRequestCardProps> = ({ request, update
   };
 
   return (
-    <div className="bg-white rounded-large p-6 mb-4 mx-6 md:mx-0 md:py-7 md:px-8 md:flex md:justify-between">
+    <div className="product-request-card bg-white rounded-large p-6 mb-4 mx-6 md:mx-0 md:py-7 md:px-8 md:flex md:justify-between">
       <button
         className="bg-gray invisible h-0 md:px-3 md:py-2 md:rounded-large md:visible md:h-14 hover:bg-blue-lighter"
         onClick={() => increaseUpvotes(request)}
@@ -29,7 +29,9 @@ const ProductRequestCard: React.FC<ProductRequestCardProps> = ({ request, update
         <span className="font-jost font-bold text-xs text-indigo text-center block">{request.upvotes}</span>
       </button>
       <div className="md:w-3/4 md:py-0">
-        <p className="font-jost font-bold text-indigo text-sm md:text-lg mb-2 md:mb-1">{request.title}</p>
+        <p className="product-request-title font-jost font-bold text-indigo text-sm md:text-lg mb-2 md:mb-1">
+          {request.title}
+        </p>
         <p className="font-jost font-normal text-gray-dark text-sm md:text-base mb-2 md:mb-3">{request.description}</p>
         <span className="font-jost font-semibold text-sm text-blue px-4 py-1.5 bg-gray rounded-large">
           {request.category[0].toUpperCase() + request.category.slice(1)}
