@@ -14,7 +14,9 @@ const ProductRequestsList: React.FC<ProductRequestListProps> = ({ productRequest
       <ul className="mt-8">
         {productRequests.map((request: ProductRequest) => (
           <Link key={request.id} to={`/details/${request.id}`}>
-            <ProductRequestCard request={request} updateProductRequests={updateProductRequests} />
+            <div className="mb-4 mx-6 md:mx-0">
+              <ProductRequestCard request={request} updateProductRequests={updateProductRequests} />
+            </div>
           </Link>
         ))}
       </ul>

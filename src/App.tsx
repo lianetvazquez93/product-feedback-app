@@ -14,7 +14,7 @@ const App: React.FC = () => {
         <Switch>
           <Route exact path="/" component={Suggestions} />
           <Route path="/new" component={NewFeedback} />
-          <Route path="/edit" component={EditFeedback} />
+          <Route path="/edit/:id" component={EditFeedback} />
           <Route path="/roadmap" component={Roadmap} />
           <Route path="/details/:id" component={FeedbackDetail} />
         </Switch>

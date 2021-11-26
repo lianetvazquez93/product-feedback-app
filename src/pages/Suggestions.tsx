@@ -154,7 +154,7 @@ const Suggestions: React.FC = () => {
 
   return (
     <div
-      className="m-0 pb-6 flex items-start justify-center w-100 md:justify-between lg:mx-auto lg:px-4"
+      className="m-0 pb-6 flex items-start justify-center w-full md:justify-between lg:mx-auto lg:px-4"
       style={{ maxWidth: '70rem' }}
     >
       <div className="w-0 invisible lg:visible lg:w-64 flex flex-col mt-24 sticky top-24">
@@ -369,7 +369,7 @@ const Suggestions: React.FC = () => {
           </div>
           <Link
             to="/new"
-            className="inline-block align-middle bg-purple text-sm text-gray-light font-bold rounded-large hover:bg-purple-light py-2.5 px-4 md:py-3"
+            className="bg-purple text-sm text-gray-light font-bold rounded-large hover:bg-purple-light py-2.5 px-4 md:py-3 md:px-6"
           >
             + Add Feedback
           </Link>
