@@ -11,7 +11,7 @@ const NavbarRoadmap: React.FC<NavbarRoadmapProps> = ({ productRequests }) => {
     <div className="mx-6 mt-5">
       <div className="flex justify-between flex-none items-center">
         <span className="font-bold text-lg text-indigo-dark">Roadmap</span>
-        <Link to="/roadmap" className="font-semibold text-sm text-blue underline">
+        <Link to="/roadmap" className="font-semibold text-sm text-blue underline hover:text-blue-light">
           View
         </Link>
       </div>

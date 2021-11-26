@@ -5,7 +5,6 @@ import ProductRequestsList from '../components/ProductRequestsList';
 import EmptySuggestions from '../components/EmptySuggestions';
 import NavbarRoadmap from '../components/NavbarRoadmap';
 import NavbarFilters from '../components/NavbarFilters';
-import { StringLiteralLike } from 'typescript';
 
 interface User {
   image: string;
