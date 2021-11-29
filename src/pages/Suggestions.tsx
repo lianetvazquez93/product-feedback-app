@@ -12,10 +12,17 @@ interface User {
   username: string;
 }
 
-interface Comment {
+interface Reply {
+  content: string;
+  replyingTo: string;
+  user: User;
+}
+
+export interface Comment {
   id: number;
   content: string;
   user: User;
+  replies?: Reply[];
 }
 
 export interface ProductRequest {

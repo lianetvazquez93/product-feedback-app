@@ -2,8 +2,8 @@ import axios from 'axios';
 import React, { useState, useEffect } from 'react';
 import { useParams, Link } from 'react-router-dom';
 import { ProductRequest } from './Suggestions';
-import EmptySuggestions from '../components/EmptySuggestions';
 import ProductRequestCard from '../components/ProductRequestCard';
+import CommentsList from '../components/CommentsList';
 
 const FeedbackDetail: React.FC = () => {
   const [productRequest, setProductRequest] = useState<ProductRequest>();
@@ -18,7 +18,11 @@ const FeedbackDetail: React.FC = () => {
   });
 
   if (!productRequest) {
-    return <EmptySuggestions />;
+    return (
+      <div className="flex justify-center items-center">
+        <div className="animate-spin rounded-full h-32 w-32 border-t-2 border-b-2 border-purple"></div>
+      </div>
+    );
   }
 
   return (
@@ -44,6 +48,7 @@ const FeedbackDetail: React.FC = () => {
       <div className="flex w-full justify-center mt-6">
         <ProductRequestCard request={productRequest} />
       </div>
+      {productRequest.comments ? <CommentsList comments={productRequest.comments} /> : <div className="hidden"></div>}
     </div>
   );
 };
