@@ -36,7 +36,7 @@ const FeedbackDetail: React.FC = () => {
               clipRule="evenodd"
             />
           </svg>
-          <span className="font-bold text-gray-dark text-sm ml-1.5">Go Back</span>
+          <span className="font-bold text-gray-dark text-sm ml-1.5 hover:underline">Go Back</span>
         </Link>
         <Link
           to={`/edit/${id}`}
