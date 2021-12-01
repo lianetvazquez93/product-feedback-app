@@ -6,13 +6,13 @@ import EmptySuggestions from '../components/EmptySuggestions';
 import NavbarRoadmap from '../components/NavbarRoadmap';
 import NavbarFilters from '../components/NavbarFilters';
 
-interface User {
+export interface User {
   image: string;
   name: string;
   username: string;
 }
 
-interface Reply {
+export interface Reply {
   content: string;
   replyingTo: string;
   user: User;
