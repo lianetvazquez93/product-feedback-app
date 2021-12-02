@@ -4,6 +4,7 @@ import { useParams, Link } from 'react-router-dom';
 import { ProductRequest } from './Suggestions';
 import ProductRequestCard from '../components/ProductRequestCard';
 import CommentsList from '../components/CommentsList';
+import AddComment from '../components/AddComment';
 
 const FeedbackDetail: React.FC = () => {
   const [productRequest, setProductRequest] = useState<ProductRequest>();
@@ -49,6 +50,7 @@ const FeedbackDetail: React.FC = () => {
         <ProductRequestCard request={productRequest} />
       </div>
       {productRequest.comments ? <CommentsList comments={productRequest.comments} /> : <div className="hidden"></div>}
+      <AddComment />
     </div>
   );
 };

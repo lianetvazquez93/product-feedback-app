@@ -20,8 +20,8 @@ const ReplyCard: React.FC<ReplyCardProps> = ({ reply }) => {
         <button className="font-semibold text-sm text-blue hover:underline p-0">Reply</button>
       </div>
       <div className="mt-4 md:mt-2.5 md:pl-20">
-        <span className="font-bold text-sm text-purple">@{reply.replyingTo} </span>
-        <span className="text-sm text-gray-dark">{reply.content}</span>
+        <span className="font-bold text-sm text-purple md:text-base">@{reply.replyingTo} </span>
+        <span className="text-sm text-gray-dark md:text-base">{reply.content}</span>
       </div>
     </div>
   );
