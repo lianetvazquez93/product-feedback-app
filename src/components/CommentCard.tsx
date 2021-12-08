@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useState } from 'react';
 import { Comment } from '../pages/Suggestions';
 import imageelijah from '../assets/user-images/image-elijah.jpg';
 import RepliesList from './RepliesList';
@@ -8,13 +8,7 @@ interface CommentCardProps {
 }
 
 const CommentCard: React.FC<CommentCardProps> = ({ comment }) => {
-  const renderReplies = () => {
-    if (!comment.replies) {
-      return <div className="hidden"></div>;
-    }
-
-    return <RepliesList replies={comment.replies} />;
-  };
+  const [showPostReply, setShowPostReply] = useState<boolean>(false);
 
   return (
     <div className="mb-6 pb-6">
@@ -26,10 +20,24 @@ const CommentCard: React.FC<CommentCardProps> = ({ comment }) => {
             <p className="text-sm text-gray-dark md:text-base">@{comment.user.username}</p>
           </div>
         </div>
-        <button className="font-semibold text-sm text-blue hover:underline p-0">Reply</button>
+        <button className="font-semibold text-sm text-blue hover:underline p-0" onClick={() => setShowPostReply(true)}>
+          Reply
+        </button>
       </div>
       <p className="mt-4 text-sm md:text-base text-gray-dark mx-0 md:ml-16">{comment.content}</p>
-      {renderReplies()}
+      {showPostReply && (
+        <div className="flex justify-between items-start mt-6 md:ml-16">
+          <textarea
+            className="p-4 md:p-6 rounded-large bg-gray-light focus:ring-1 focus:ring-blue h-20 w-3/4 lg:w-4/5"
+            placeholder="Type your comment here"
+            maxLength={250}
+          />
+          <button className="bg-purple hover:bg-purple-light rounded-large font-bold text-sm text-gray-light px-4 md:px-6 py-2.5 md:py-3">
+            Post Reply
+          </button>
+        </div>
+      )}
+      {comment.replies && <RepliesList replies={comment.replies} />}
     </div>
   );
 };
