@@ -78,6 +78,15 @@
               }
             }
           ]
+        },
+        {
+          "id": "dc376c4c-b4c6-44e2-a860-2d5aa5491b59",
+          "content": "Can't wait for dark mode!",
+          "user": {
+            "image": "../src/assets/user-images/image-zena.jpg",
+            "name": "Zena Kelley",
+            "username": "velvetround"
+          }
         }
       ]
     },

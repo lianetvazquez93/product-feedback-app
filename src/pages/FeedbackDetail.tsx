@@ -11,6 +11,11 @@ const FeedbackDetail: React.FC = () => {
 
   const { id } = useParams<{ id: string }>();
 
+  const updateProductRequest = async () => {
+    const { data } = await axios.get(`http://localhost:5001/productRequests/${id}`);
+    setProductRequest(data);
+  };
+
   useEffect(() => {
     (async () => {
       const { data } = await axios.get(`http://localhost:5001/productRequests/${id}`);
@@ -49,8 +54,12 @@ const FeedbackDetail: React.FC = () => {
       <div className="flex w-full justify-center mt-6">
         <ProductRequestCard request={productRequest} />
       </div>
-      {productRequest.comments ? <CommentsList comments={productRequest.comments} /> : <div className="hidden"></div>}
-      <AddComment />
+      {productRequest.comments && <CommentsList comments={productRequest.comments} />}
+      <AddComment
+        id={id}
+        comments={productRequest.comments ? productRequest.comments : []}
+        updateProductRequest={updateProductRequest}
+      />
     </div>
   );
 };
