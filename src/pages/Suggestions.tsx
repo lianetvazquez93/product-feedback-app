@@ -19,14 +19,14 @@ export interface Reply {
 }
 
 export interface Comment {
-  id: number;
+  id: string;
   content: string;
   user: User;
   replies?: Reply[];
 }
 
 export interface ProductRequest {
-  id: number;
+  id: string;
   title: string;
   category: string;
   upvotes: number;

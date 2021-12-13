@@ -5,16 +5,16 @@ import { Comment } from '../pages/Suggestions';
 interface AddCommentProps {
   id: string;
   comments: Comment[];
-  updateProductRequest: () => void;
+  updateProductRequest: () => Promise<void>;
 }
 
 const AddComment: React.FC<AddCommentProps> = ({ id, comments, updateProductRequest }) => {
   const [charCount, setCharCount] = useState<number>(0);
-  const [content, setContent] = useState<string>('');
+  const [commentContent, setCommentContent] = useState<string>('');
 
   const onTextareaUpdate = (e: React.ChangeEvent<HTMLTextAreaElement>): void => {
     setCharCount(e.target.value.length);
-    setContent(e.target.value);
+    setCommentContent(e.target.value);
   };
 
   const onPostCommentClick = async () => {
@@ -25,12 +25,12 @@ const AddComment: React.FC<AddCommentProps> = ({ id, comments, updateProductRequ
         ...comments,
         {
           id: uuidv4(),
-          content: content,
+          content: commentContent,
           user: data,
         },
       ],
     });
-    setContent('');
+    setCommentContent('');
     updateProductRequest();
   };
 
@@ -40,7 +40,7 @@ const AddComment: React.FC<AddCommentProps> = ({ id, comments, updateProductRequ
       <textarea
         className="w-full h-20 p-4 md:p-6 mt-6 rounded-large bg-gray-light focus:ring-1 focus:ring-blue"
         placeholder="Type your comment here"
-        value={content}
+        value={commentContent}
         onChange={(e) => onTextareaUpdate(e)}
         maxLength={250}
       ></textarea>
@@ -48,7 +48,7 @@ const AddComment: React.FC<AddCommentProps> = ({ id, comments, updateProductRequ
         <span className="text-base text-gray-dark pl-1.5">{250 - charCount} characters left</span>
         <button
           className={`bg-purple hover:bg-purple-light rounded-large font-bold text-sm text-gray-light px-4 md:px-6 py-2.5 md:py-3 ${
-            content.length ? '' : 'cursor-not-allowed'
+            commentContent.length ? '' : 'cursor-not-allowed'
           }`}
           onClick={onPostCommentClick}
         >

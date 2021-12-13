@@ -32,7 +32,7 @@ const FeedbackDetail: React.FC = () => {
   }
 
   return (
-    <div className="mx-6 md:mx-10 lg:mx-auto mt-6 md:mt-14 pb-6 flex flex-col" style={{ maxWidth: '70rem' }}>
+    <div className="mx-6 md:mx-10 xl:mx-auto mt-6 md:mt-14 pb-6 flex flex-col" style={{ maxWidth: '70rem' }}>
       <div className="flex justify-between w-full">
         <Link to="/" className="py-2.5 md:py-3">
           <svg xmlns="http://www.w3.org/2000/svg" className="inline h-5 w-5" viewBox="0 0 20 20" fill="#4661E6">
@@ -54,7 +54,9 @@ const FeedbackDetail: React.FC = () => {
       <div className="flex w-full justify-center mt-6">
         <ProductRequestCard request={productRequest} />
       </div>
-      {productRequest.comments && <CommentsList comments={productRequest.comments} />}
+      {productRequest.comments && (
+        <CommentsList comments={productRequest.comments} updateProductRequest={updateProductRequest} requestId={id} />
+      )}
       <AddComment
         id={id}
         comments={productRequest.comments ? productRequest.comments : []}

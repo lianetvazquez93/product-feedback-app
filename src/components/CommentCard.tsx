@@ -5,10 +5,20 @@ import RepliesList from './RepliesList';
 
 interface CommentCardProps {
   comment: Comment;
+  updateProductRequest: () => Promise<void>;
+  postReply: (id: string, content: string) => Promise<void>;
 }
 
-const CommentCard: React.FC<CommentCardProps> = ({ comment }) => {
+const CommentCard: React.FC<CommentCardProps> = ({ comment, updateProductRequest, postReply }) => {
   const [showPostReply, setShowPostReply] = useState<boolean>(false);
+  const [replyContent, setReplyContent] = useState<string>('');
+
+  const onPostReplyClick = async () => {
+    await postReply(comment.id, replyContent);
+    setReplyContent('');
+    setShowPostReply(false);
+    updateProductRequest();
+  };
 
   return (
     <div className="mb-6 pb-6">
@@ -28,11 +38,18 @@ const CommentCard: React.FC<CommentCardProps> = ({ comment }) => {
       {showPostReply && (
         <div className="flex justify-between items-start mt-6 md:ml-16">
           <textarea
-            className="p-4 md:p-6 rounded-large bg-gray-light focus:ring-1 focus:ring-blue h-20 w-3/4 lg:w-4/5"
+            className="p-4 md:p-6 rounded-large bg-gray-light focus:ring-1 focus:ring-blue h-20 w-2/3 md:w-3/4 lg:w-4/5"
+            value={replyContent}
             placeholder="Type your comment here"
             maxLength={250}
+            onChange={(e) => setReplyContent(e.target.value)}
           />
-          <button className="bg-purple hover:bg-purple-light rounded-large font-bold text-sm text-gray-light px-4 md:px-6 py-2.5 md:py-3">
+          <button
+            className={`bg-purple hover:bg-purple-light rounded-large font-bold text-sm text-gray-light px-4 md:px-6 py-2.5 md:py-3 ${
+              replyContent.length ? '' : 'cursor-not-allowed'
+            }`}
+            onClick={onPostReplyClick}
+          >
             Post Reply
           </button>
         </div>
