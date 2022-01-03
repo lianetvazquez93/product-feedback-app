@@ -9,7 +9,7 @@
       "id": 1,
       "title": "Add tags for solutions",
       "category": "enhancement",
-      "upvotes": 118,
+      "upvotes": 119,
       "status": "suggestion",
       "description": "Easier to search for solutions based on a specific stack.",
       "comments": [
@@ -37,7 +37,7 @@
       "id": 2,
       "title": "Add a dark theme option",
       "category": "feature",
-      "upvotes": 105,
+      "upvotes": 106,
       "status": "suggestion",
       "description": "It would help people with light sensitivities and who prefer dark mode.",
       "comments": [
@@ -48,7 +48,18 @@
             "image": "../assets/user-images/image-elijah.jpg",
             "name": "Elijah Moss",
             "username": "hexagon.bestagon"
-          }
+          },
+          "replies": [
+            {
+              "content": "fggfdhmdm",
+              "replyingTo": "hexagon.bestagon",
+              "user": {
+                "image": "../src/assets/user-images/image-zena.jpg",
+                "name": "Zena Kelley",
+                "username": "velvetround"
+              }
+            }
+          ]
         },
         {
           "id": 4,
@@ -79,6 +90,15 @@
             },
             {
               "content": "Always install through verified sources only.",
+              "replyingTo": "hummingbird1",
+              "user": {
+                "image": "../src/assets/user-images/image-zena.jpg",
+                "name": "Zena Kelley",
+                "username": "velvetround"
+              }
+            },
+            {
+              "content": "hgfghfgh",
               "replyingTo": "hummingbird1",
               "user": {
                 "image": "../src/assets/user-images/image-zena.jpg",
@@ -246,7 +266,7 @@
       "id": 7,
       "title": "More comprehensive reports",
       "category": "feature",
-      "upvotes": 126,
+      "upvotes": 130,
       "status": "planned",
       "description": "It would be great to see a more detailed breakdown of solutions.",
       "comments": [
@@ -331,7 +351,7 @@
       "id": 11,
       "title": "Animated solution screenshots",
       "category": "bug",
-      "upvotes": 15,
+      "upvotes": 16,
       "status": "in-progress",
       "description": "Screenshots of solutions with animations don’t display correctly."
     },

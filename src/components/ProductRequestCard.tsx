@@ -8,7 +8,9 @@ interface ProductRequestCardProps {
 }
 
 const ProductRequestCard: React.FC<ProductRequestCardProps> = ({ request, updateProductRequests }) => {
-  const increaseUpvotes = async (request: ProductRequest) => {
+  const increaseUpvotes = async (event: React.MouseEvent<HTMLButtonElement>, request: ProductRequest) => {
+    event.preventDefault();
+    event.stopPropagation();
     await axios.patch(`http://localhost:5001/productRequests/${request.id}`, { upvotes: request.upvotes + 1 });
     if (updateProductRequests) {
       updateProductRequests();
@@ -20,7 +22,7 @@ const ProductRequestCard: React.FC<ProductRequestCardProps> = ({ request, update
       <div className="flex justify-start md:justify-between">
         <button
           className="bg-gray invisible h-0 w-0 md:px-3 md:py-2 md:rounded-large md:visible md:h-14 md:w-11 hover:bg-blue-lighter"
-          onClick={() => increaseUpvotes(request)}
+          onClick={(e) => increaseUpvotes(e, request)}
         >
           <svg xmlns="http://www.w3.org/2000/svg" className="h-5 w-5 block" viewBox="0 0 20 20" fill="#4661E6">
             <path
@@ -58,7 +60,7 @@ const ProductRequestCard: React.FC<ProductRequestCardProps> = ({ request, update
       <div className="flex justify-between items-center mt-4 md:hidden">
         <button
           className="bg-gray py-2 pl-4 pr-3.5 rounded-large inline-block hover:bg-blue-lighter"
-          onClick={() => increaseUpvotes(request)}
+          onClick={(e) => increaseUpvotes(e, request)}
         >
           <svg xmlns="http://www.w3.org/2000/svg" className="h-5 w-5 inline" viewBox="0 0 20 20" fill="#4661E6">
             <path
