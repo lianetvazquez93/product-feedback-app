@@ -30,7 +30,10 @@ const CommentCard: React.FC<CommentCardProps> = ({ comment, updateProductRequest
             <p className="text-sm text-gray-dark md:text-base">@{comment.user.username}</p>
           </div>
         </div>
-        <button className="font-semibold text-sm text-blue hover:underline p-0" onClick={() => setShowPostReply(true)}>
+        <button
+          className="font-semibold text-sm text-blue hover:underline p-0"
+          onClick={() => setShowPostReply(!showPostReply)}
+        >
           Reply
         </button>
       </div>
@@ -54,7 +57,14 @@ const CommentCard: React.FC<CommentCardProps> = ({ comment, updateProductRequest
           </button>
         </div>
       )}
-      {comment.replies && <RepliesList replies={comment.replies} />}
+      {comment.replies && (
+        <RepliesList
+          replies={comment.replies}
+          comment={comment}
+          postReply={postReply}
+          updateProductRequest={updateProductRequest}
+        />
+      )}
     </div>
   );
 };

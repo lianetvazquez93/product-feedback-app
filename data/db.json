@@ -76,6 +76,15 @@
                 "name": "Ryan Welles",
                 "username": "voyager.344"
               }
+            },
+            {
+              "content": "Always install through verified sources only.",
+              "replyingTo": "hummingbird1",
+              "user": {
+                "image": "../src/assets/user-images/image-zena.jpg",
+                "name": "Zena Kelley",
+                "username": "velvetround"
+              }
             }
           ]
         },
