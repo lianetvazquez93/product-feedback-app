@@ -11,6 +11,9 @@ module.exports = {
       danger: '#E84D70',
     }),
     extend: {
+      width: {
+        144: '36rem',
+      },
       colors: {
         purple: {
           light: '#C75AF6',
