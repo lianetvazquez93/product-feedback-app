@@ -126,7 +126,7 @@ const Suggestions: React.FC = () => {
 
   const updateProductRequests = async () => {
     const { data } = await axios.get('http://localhost:5001/productRequests');
-    sortData(filterData(data));
+    sortData(filterData(data.filter((request: ProductRequest) => request.status === 'suggestion')));
   };
 
   const selectSortType = (sortValue: string) => {
@@ -155,7 +155,7 @@ const Suggestions: React.FC = () => {
   useEffect(() => {
     (async () => {
       const { data } = await axios.get('http://localhost:5001/productRequests');
-      sortData(filterData(data));
+      sortData(filterData(data.filter((request: ProductRequest) => request.status === 'suggestion')));
     })();
   }, [sortType, filterType]);
 
