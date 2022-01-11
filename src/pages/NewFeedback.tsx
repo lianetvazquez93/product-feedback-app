@@ -6,6 +6,11 @@ const NewFeedback: React.FC = () => {
   const [category, setCategory] = useState<string>('Feature');
   const [dropdownVisible, setDropdownVisible] = useState<boolean>(false);
 
+  const selectCategory = (category: string) => {
+    setCategory(category);
+    setDropdownVisible(false);
+  };
+
   return (
     <div className="m-0 pb-6 w-full">
       <div className="w-auto mx-6 mt-9 md:mt-14 lg:mt-24 md:w-144 md:mx-auto">
@@ -54,133 +59,135 @@ const NewFeedback: React.FC = () => {
             <div className="mt-6">
               <label className="font-bold text-indigo text-sm">Category</label>
               <p className="text-sm text-gray-dark">Choose a category for your feedback</p>
-              <button
-                className="mt-4 text-sm text-indigo bg-gray-light w-full rounded-large py-3.5 px-4 md:px-6 flex justify-between"
-                onClick={() => setDropdownVisible(!dropdownVisible)}
-              >
-                {category}
-                <div className="h-5 w-5">
-                  <svg
-                    xmlns="http://www.w3.org/2000/svg"
-                    className={dropdownVisible ? 'h-0 w-0' : 'h-5 w-5'}
-                    viewBox="0 0 20 20"
-                    fill="#4661E6"
+              <div className="relative">
+                <button
+                  className="mt-4 text-sm text-indigo bg-gray-light w-full rounded-large py-3.5 px-4 md:px-6 flex justify-between"
+                  onClick={() => setDropdownVisible(!dropdownVisible)}
+                >
+                  {category}
+                  <div className="h-5 w-5">
+                    <svg
+                      xmlns="http://www.w3.org/2000/svg"
+                      className={dropdownVisible ? 'h-0 w-0' : 'h-5 w-5'}
+                      viewBox="0 0 20 20"
+                      fill="#4661E6"
+                    >
+                      <path
+                        fillRule="evenodd"
+                        d="M5.293 7.293a1 1 0 011.414 0L10 10.586l3.293-3.293a1 1 0 111.414 1.414l-4 4a1 1 0 01-1.414 0l-4-4a1 1 0 010-1.414z"
+                        clipRule="evenodd"
+                      />
+                    </svg>
+                    <svg
+                      xmlns="http://www.w3.org/2000/svg"
+                      className={dropdownVisible ? 'h-5 w-5' : 'h-0 w-0'}
+                      viewBox="0 0 20 20"
+                      fill="#4661E6"
+                    >
+                      <path
+                        fillRule="evenodd"
+                        d="M14.707 12.707a1 1 0 01-1.414 0L10 9.414l-3.293 3.293a1 1 0 01-1.414-1.414l4-4a1 1 0 011.414 0l4 4a1 1 0 010 1.414z"
+                        clipRule="evenodd"
+                      />
+                    </svg>
+                  </div>
+                </button>
+                <div
+                  className={`absolute min-w-max float-left mx-0 mt-4 bg-white rounded-large ${
+                    dropdownVisible ? 'w-full h-60 shadow-xl' : 'w-0 h-0 invisible'
+                  }`}
+                >
+                  <button
+                    className="flex px-6 w-full h-1/5 justify-between items-center border-b border-indigo border-opacity-20 text-gray-dark hover:text-purple"
+                    onClick={() => selectCategory('Feature')}
                   >
-                    <path
-                      fillRule="evenodd"
-                      d="M5.293 7.293a1 1 0 011.414 0L10 10.586l3.293-3.293a1 1 0 111.414 1.414l-4 4a1 1 0 01-1.414 0l-4-4a1 1 0 010-1.414z"
-                      clipRule="evenodd"
-                    />
-                  </svg>
-                  <svg
-                    xmlns="http://www.w3.org/2000/svg"
-                    className={dropdownVisible ? 'h-5 w-5' : 'h-0 w-0'}
-                    viewBox="0 0 20 20"
-                    fill="#4661E6"
+                    <span>Feature</span>
+                    <svg
+                      xmlns="http://www.w3.org/2000/svg"
+                      className={`inline ${category === 'Feature' ? 'h-5 w-5' : 'h-0 w-0'}`}
+                      viewBox="0 0 20 20"
+                      fill="#AD1FEA"
+                    >
+                      <path
+                        fillRule="evenodd"
+                        d="M16.707 5.293a1 1 0 010 1.414l-8 8a1 1 0 01-1.414 0l-4-4a1 1 0 011.414-1.414L8 12.586l7.293-7.293a1 1 0 011.414 0z"
+                        clipRule="evenodd"
+                      />
+                    </svg>
+                  </button>
+                  <button
+                    className="flex px-6 justify-between items-center w-full h-1/5 border-b border-indigo border-opacity-20 text-gray-dark hover:text-purple"
+                    onClick={() => selectCategory('UI')}
                   >
-                    <path
-                      fillRule="evenodd"
-                      d="M14.707 12.707a1 1 0 01-1.414 0L10 9.414l-3.293 3.293a1 1 0 01-1.414-1.414l4-4a1 1 0 011.414 0l4 4a1 1 0 010 1.414z"
-                      clipRule="evenodd"
-                    />
-                  </svg>
+                    <span>UI</span>
+                    <svg
+                      xmlns="http://www.w3.org/2000/svg"
+                      className={`inline ${category === 'UI' ? 'h-5 w-5' : 'h-0 w-0'}`}
+                      viewBox="0 0 20 20"
+                      fill="#AD1FEA"
+                    >
+                      <path
+                        fillRule="evenodd"
+                        d="M16.707 5.293a1 1 0 010 1.414l-8 8a1 1 0 01-1.414 0l-4-4a1 1 0 011.414-1.414L8 12.586l7.293-7.293a1 1 0 011.414 0z"
+                        clipRule="evenodd"
+                      />
+                    </svg>
+                  </button>
+                  <button
+                    className="flex px-6 justify-between items-center w-full h-1/5 border-b border-indigo border-opacity-20 text-gray-dark hover:text-purple"
+                    onClick={() => selectCategory('UX')}
+                  >
+                    <span>UX</span>
+                    <svg
+                      xmlns="http://www.w3.org/2000/svg"
+                      className={`inline ${category === 'UX' ? 'h-5 w-5' : 'h-0 w-0'}`}
+                      viewBox="0 0 20 20"
+                      fill="#AD1FEA"
+                    >
+                      <path
+                        fillRule="evenodd"
+                        d="M16.707 5.293a1 1 0 010 1.414l-8 8a1 1 0 01-1.414 0l-4-4a1 1 0 011.414-1.414L8 12.586l7.293-7.293a1 1 0 011.414 0z"
+                        clipRule="evenodd"
+                      />
+                    </svg>
+                  </button>
+                  <button
+                    className="flex px-6 justify-between items-center w-full h-1/5 border-b border-indigo border-opacity-20 text-gray-dark hover:text-purple"
+                    onClick={() => selectCategory('Enhancement')}
+                  >
+                    <span>Enhancement</span>
+                    <svg
+                      xmlns="http://www.w3.org/2000/svg"
+                      className={`inline ${category == 'Enhancement' ? 'h-5 w-5' : 'h-0 w-0'}`}
+                      viewBox="0 0 20 20"
+                      fill="#AD1FEA"
+                    >
+                      <path
+                        fillRule="evenodd"
+                        d="M16.707 5.293a1 1 0 010 1.414l-8 8a1 1 0 01-1.414 0l-4-4a1 1 0 011.414-1.414L8 12.586l7.293-7.293a1 1 0 011.414 0z"
+                        clipRule="evenodd"
+                      />
+                    </svg>
+                  </button>
+                  <button
+                    className="flex px-6 justify-between items-center w-full h-1/5 text-gray-dark hover:text-purple"
+                    onClick={() => selectCategory('Bug')}
+                  >
+                    <span>Bug</span>
+                    <svg
+                      xmlns="http://www.w3.org/2000/svg"
+                      className={`inline ${category == 'Bug' ? 'h-5 w-5' : 'h-0 w-0'}`}
+                      viewBox="0 0 20 20"
+                      fill="#AD1FEA"
+                    >
+                      <path
+                        fillRule="evenodd"
+                        d="M16.707 5.293a1 1 0 010 1.414l-8 8a1 1 0 01-1.414 0l-4-4a1 1 0 011.414-1.414L8 12.586l7.293-7.293a1 1 0 011.414 0z"
+                        clipRule="evenodd"
+                      />
+                    </svg>
+                  </button>
                 </div>
-              </button>
-              <div
-                className={`mt-4 bg-white rounded-large ${
-                  dropdownVisible ? 'w-full h-60 shadow-xl' : 'w-0 h-0 invisible'
-                }`}
-              >
-                <button
-                  className="flex px-6 w-full h-1/5 justify-between items-center border-b border-indigo border-opacity-20 text-gray-dark hover:text-purple"
-                  onClick={() => setCategory('Feature')}
-                >
-                  <span>Feature</span>
-                  <svg
-                    xmlns="http://www.w3.org/2000/svg"
-                    className={`inline ${category === 'Feature' ? 'h-5 w-5' : 'h-0 w-0'}`}
-                    viewBox="0 0 20 20"
-                    fill="#AD1FEA"
-                  >
-                    <path
-                      fillRule="evenodd"
-                      d="M16.707 5.293a1 1 0 010 1.414l-8 8a1 1 0 01-1.414 0l-4-4a1 1 0 011.414-1.414L8 12.586l7.293-7.293a1 1 0 011.414 0z"
-                      clipRule="evenodd"
-                    />
-                  </svg>
-                </button>
-                <button
-                  className="flex px-6 justify-between items-center w-full h-1/5 border-b border-indigo border-opacity-20 text-gray-dark hover:text-purple"
-                  onClick={() => setCategory('UI')}
-                >
-                  <span>UI</span>
-                  <svg
-                    xmlns="http://www.w3.org/2000/svg"
-                    className={`inline ${category === 'UI' ? 'h-5 w-5' : 'h-0 w-0'}`}
-                    viewBox="0 0 20 20"
-                    fill="#AD1FEA"
-                  >
-                    <path
-                      fillRule="evenodd"
-                      d="M16.707 5.293a1 1 0 010 1.414l-8 8a1 1 0 01-1.414 0l-4-4a1 1 0 011.414-1.414L8 12.586l7.293-7.293a1 1 0 011.414 0z"
-                      clipRule="evenodd"
-                    />
-                  </svg>
-                </button>
-                <button
-                  className="flex px-6 justify-between items-center w-full h-1/5 border-b border-indigo border-opacity-20 text-gray-dark hover:text-purple"
-                  onClick={() => setCategory('UX')}
-                >
-                  <span>UX</span>
-                  <svg
-                    xmlns="http://www.w3.org/2000/svg"
-                    className={`inline ${category === 'UX' ? 'h-5 w-5' : 'h-0 w-0'}`}
-                    viewBox="0 0 20 20"
-                    fill="#AD1FEA"
-                  >
-                    <path
-                      fillRule="evenodd"
-                      d="M16.707 5.293a1 1 0 010 1.414l-8 8a1 1 0 01-1.414 0l-4-4a1 1 0 011.414-1.414L8 12.586l7.293-7.293a1 1 0 011.414 0z"
-                      clipRule="evenodd"
-                    />
-                  </svg>
-                </button>
-                <button
-                  className="flex px-6 justify-between items-center w-full h-1/5 border-b border-indigo border-opacity-20 text-gray-dark hover:text-purple"
-                  onClick={() => setCategory('Enhancement')}
-                >
-                  <span>Enhancement</span>
-                  <svg
-                    xmlns="http://www.w3.org/2000/svg"
-                    className={`inline ${category == 'Enhancement' ? 'h-5 w-5' : 'h-0 w-0'}`}
-                    viewBox="0 0 20 20"
-                    fill="#AD1FEA"
-                  >
-                    <path
-                      fillRule="evenodd"
-                      d="M16.707 5.293a1 1 0 010 1.414l-8 8a1 1 0 01-1.414 0l-4-4a1 1 0 011.414-1.414L8 12.586l7.293-7.293a1 1 0 011.414 0z"
-                      clipRule="evenodd"
-                    />
-                  </svg>
-                </button>
-                <button
-                  className="flex px-6 justify-between items-center w-full h-1/5 text-gray-dark hover:text-purple"
-                  onClick={() => setCategory('Bug')}
-                >
-                  <span>Bug</span>
-                  <svg
-                    xmlns="http://www.w3.org/2000/svg"
-                    className={`inline ${category == 'Bug' ? 'h-5 w-5' : 'h-0 w-0'}`}
-                    viewBox="0 0 20 20"
-                    fill="#AD1FEA"
-                  >
-                    <path
-                      fillRule="evenodd"
-                      d="M16.707 5.293a1 1 0 010 1.414l-8 8a1 1 0 01-1.414 0l-4-4a1 1 0 011.414-1.414L8 12.586l7.293-7.293a1 1 0 011.414 0z"
-                      clipRule="evenodd"
-                    />
-                  </svg>
-                </button>
               </div>
             </div>
           </div>
