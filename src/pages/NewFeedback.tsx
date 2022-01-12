@@ -4,6 +4,7 @@ import { Link } from 'react-router-dom';
 const NewFeedback: React.FC = () => {
   const [title, setTitle] = useState<string>('');
   const [category, setCategory] = useState<string>('Feature');
+  const [description, setDescription] = useState<string>('');
   const [dropdownVisible, setDropdownVisible] = useState<boolean>(false);
 
   const selectCategory = (category: string) => {
@@ -51,7 +52,7 @@ const NewFeedback: React.FC = () => {
               <label className="font-bold text-indigo text-sm">Feedback Title</label>
               <p className="text-sm text-gray-dark">Add a short, descriptive headline</p>
               <input
-                className="bg-gray-light rounded-large h-12 mt-4 w-full focus:border-blue pl-6"
+                className="bg-gray-light rounded-large h-12 mt-4 w-full focus:border-blue p-4 md:px-6"
                 value={title}
                 onChange={(e) => setTitle(e.target.value)}
               />
@@ -188,6 +189,31 @@ const NewFeedback: React.FC = () => {
                     </svg>
                   </button>
                 </div>
+              </div>
+              <div className="mt-6">
+                <label className="font-bold text-indigo text-sm">Feedback Detail</label>
+                <p className="text-sm text-gray-dark">
+                  Include any specific comments on what should be improved, added, etc.
+                </p>
+                <textarea
+                  className="bg-gray-light rounded-large h-32 md:h-24 mt-4 w-full focus:border-blue p-4 md:px-6"
+                  value={description}
+                  onChange={(e) => setDescription(e.target.value)}
+                />
+              </div>
+              <div className="flex flex-col mt-10">
+                <button
+                  type="submit"
+                  className="bg-purple hover:bg-purple-light text-sm text-gray-light w-full h-10 rounded-large"
+                >
+                  Add Feedback
+                </button>
+                <button
+                  type="reset"
+                  className="bg-indigo hover:bg-indigo-light text-sm text-gray-light w-full h-10 rounded-large mt-4"
+                >
+                  Cancel
+                </button>
               </div>
             </div>
           </div>
