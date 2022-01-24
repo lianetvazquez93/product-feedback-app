@@ -5,6 +5,7 @@ import ProductRequestsList from '../components/ProductRequestsList';
 import EmptySuggestions from '../components/EmptySuggestions';
 import NavbarRoadmap from '../components/NavbarRoadmap';
 import NavbarFilters from '../components/NavbarFilters';
+import filterData, { filterTypes } from '../helpers/filterData';
 
 export interface User {
   image: string;
@@ -35,24 +36,6 @@ export interface ProductRequest {
   comments?: Comment[];
 }
 
-export interface FilterTypes {
-  all: string;
-  ui: string;
-  ux: string;
-  enhancement: string;
-  bug: string;
-  feature: string;
-}
-
-export const filterTypes: FilterTypes = {
-  all: 'All',
-  ui: 'UI',
-  ux: 'UX',
-  enhancement: 'Enhancement',
-  bug: 'Bug',
-  feature: 'Feature',
-};
-
 const sortTypes = {
   mostUpvotes: 'Most Upvotes',
   leastUpvotes: 'Least Upvotes',
@@ -66,32 +49,6 @@ const Suggestions: React.FC = () => {
   const [filterType, setFilterType] = useState<string>(filterTypes.all);
   const [navbarVisible, setNavbarVisible] = useState<boolean>(false);
   const [dropdownVisible, setDropdownVisible] = useState<boolean>(false);
-
-  const filterData = (data: ProductRequest[]): ProductRequest[] => {
-    switch (filterType) {
-      case filterTypes.all: {
-        return data;
-      }
-      case filterTypes.ui: {
-        return data.filter((request: ProductRequest) => request.category === 'ui');
-      }
-      case filterTypes.ux: {
-        return data.filter((request: ProductRequest) => request.category === 'ux');
-      }
-      case filterTypes.enhancement: {
-        return data.filter((request: ProductRequest) => request.category === 'enhancement');
-      }
-      case filterTypes.bug: {
-        return data.filter((request: ProductRequest) => request.category === 'bug');
-      }
-      case filterTypes.feature: {
-        return data.filter((request: ProductRequest) => request.category === 'feature');
-      }
-      default: {
-        return data;
-      }
-    }
-  };
 
   const sortData = (data: ProductRequest[]) => {
     switch (sortType) {
@@ -126,7 +83,7 @@ const Suggestions: React.FC = () => {
 
   const updateProductRequests = async () => {
     const { data } = await axios.get('http://localhost:5001/productRequests');
-    sortData(filterData(data));
+    sortData(filterData(data, filterType));
   };
 
   const selectSortType = (sortValue: string) => {
@@ -155,7 +112,7 @@ const Suggestions: React.FC = () => {
   useEffect(() => {
     (async () => {
       const { data } = await axios.get('http://localhost:5001/productRequests');
-      sortData(filterData(data));
+      sortData(filterData(data, filterType));
     })();
   }, [sortType, filterType]);
 

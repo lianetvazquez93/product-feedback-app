@@ -1,5 +1,5 @@
 import React from 'react';
-import { filterTypes, FilterTypes } from '../pages/Suggestions';
+import { filterTypes, FilterTypes } from '../helpers/filterData';
 
 interface NavbarFiltersProps {
   selectFilter: (filter: string) => void;
