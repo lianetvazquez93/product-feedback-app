@@ -6,6 +6,7 @@ import EmptySuggestions from '../components/EmptySuggestions';
 import NavbarRoadmap from '../components/NavbarRoadmap';
 import NavbarFilters from '../components/NavbarFilters';
 import filterData, { filterTypes } from '../helpers/filterData';
+import sortData, { sortTypes } from '../helpers/sortData';
 
 export interface User {
   image: string;
@@ -36,13 +37,6 @@ export interface ProductRequest {
   comments?: Comment[];
 }
 
-const sortTypes = {
-  mostUpvotes: 'Most Upvotes',
-  leastUpvotes: 'Least Upvotes',
-  mostComments: 'Most Comments',
-  leastComments: 'Least Comments',
-};
-
 const Suggestions: React.FC = () => {
   const [productRequests, setProductRequests] = useState<ProductRequest[]>([]);
   const [sortType, setSortType] = useState<string>(sortTypes.mostUpvotes);
@@ -50,40 +44,9 @@ const Suggestions: React.FC = () => {
   const [navbarVisible, setNavbarVisible] = useState<boolean>(false);
   const [dropdownVisible, setDropdownVisible] = useState<boolean>(false);
 
-  const sortData = (data: ProductRequest[]) => {
-    switch (sortType) {
-      case sortTypes.mostUpvotes: {
-        setProductRequests(data.sort((a: ProductRequest, b: ProductRequest) => b.upvotes - a.upvotes));
-        break;
-      }
-      case sortTypes.leastUpvotes: {
-        setProductRequests(data.sort((a: ProductRequest, b: ProductRequest) => a.upvotes - b.upvotes));
-        break;
-      }
-      case sortTypes.mostComments: {
-        setProductRequests(
-          data.sort(
-            (a: ProductRequest, b: ProductRequest) =>
-              (b.comments ? b.comments.length : 0) - (a.comments ? a.comments.length : 0),
-          ),
-        );
-        break;
-      }
-      case sortTypes.leastComments: {
-        setProductRequests(
-          data.sort(
-            (a: ProductRequest, b: ProductRequest) =>
-              (a.comments ? a.comments.length : 0) - (b.comments ? b.comments.length : 0),
-          ),
-        );
-        break;
-      }
-    }
-  };
-
   const updateProductRequests = async () => {
     const { data } = await axios.get('http://localhost:5001/productRequests');
-    sortData(filterData(data, filterType));
+    setProductRequests(sortData(filterData(data, filterType), sortType));
   };
 
   const selectSortType = (sortValue: string) => {
@@ -112,7 +75,7 @@ const Suggestions: React.FC = () => {
   useEffect(() => {
     (async () => {
       const { data } = await axios.get('http://localhost:5001/productRequests');
-      sortData(filterData(data, filterType));
+      setProductRequests(sortData(filterData(data, filterType), sortType));
     })();
   }, [sortType, filterType]);
 
